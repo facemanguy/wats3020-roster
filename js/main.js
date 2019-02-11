@@ -27,6 +27,18 @@ class Student extends Person{
             return '0%';
         }
     }
+    calculateDays(){
+        if (this.attendance.length > 0){
+            let count = 0;
+        for (let marks of this.attendance){
+            count += marks;
+        }
+        let days = (count);
+        return `${days} / ${this.attendance.length}`;
+        }else{
+            return 0;
+        }
+    }
 }
 
 class Teacher extends Person{
@@ -168,6 +180,10 @@ function updateRoster(course){
         let attendanceTD = document.createElement('td');
         attendanceTD.innerHTML = student.calculateAttendance();
         newTR.appendChild(attendanceTD);
+
+        let daysTD = document.createElement('td');
+        daysTD.innerHTML = student.calculateDays();
+        newTR.appendChild(daysTD);
 
         let actionsTD = document.createElement('td');
         let presentButton = document.createElement('button');
